@@ -1,0 +1,260 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import CTA from '../components/CTA.astro';
+
+const team = [
+  {
+    name: "Mohammad Ahmed",
+    position: "Founder & CEO",
+    bio: "With over 20 years of experience in industrial engineering, Mohammad leads our company with a vision for innovation and excellence.",
+    imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    name: "Sarah Khan",
+    position: "Engineering Director",
+    bio: "Sarah oversees all engineering projects, ensuring they meet our high standards of quality and innovation.",
+    imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    name: "David Wilson",
+    position: "Technical Manager",
+    bio: "David brings his vast technical knowledge to ensure all our systems are designed and built to the highest specifications.",
+    imageUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    name: "Amina Patel",
+    position: "Operations Manager",
+    bio: "Amina ensures all projects are delivered on time and within budget, maintaining our reputation for reliability.",
+    imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+  }
+];
+
+const milestones = [
+  {
+    year: "2008",
+    title: "Company Founding",
+    description: "Nabiya Enterprises was established with a focus on quality metal fabrication."
+  },
+  {
+    year: "2012",
+    title: "Expansion into Conveyor Systems",
+    description: "Expanded services to include design and manufacturing of industrial conveyor systems."
+  },
+  {
+    year: "2016",
+    title: "State-of-the-Art Facility",
+    description: "Opened our new 50,000 sq. ft. manufacturing facility with cutting-edge equipment."
+  },
+  {
+    year: "2020",
+    title: "International Expansion",
+    description: "Started serving international clients and expanded our project portfolio globally."
+  },
+  {
+    year: "2023",
+    title: "Innovation Award",
+    description: "Received industry recognition for our innovative approach to custom engineering solutions."
+  }
+];
+---
+
+<Layout title="About Us" description="Learn about Nabiya Enterprises - our history, mission, infrastructure, and the team behind our engineering excellence.">
+  <!-- Hero Section -->
+  <Hero 
+    title="About Nabiya Enterprises" 
+    subtitle="Discover our journey, our mission, and the people behind our engineering excellence"
+    ctaText="Contact Us"
+    ctaLink="/contact"
+    backgroundImage="https://images.unsplash.com/photo-1581091007718-0c50d599bfd0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+  />
+  
+  <!-- Mission & Vision -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <h2 class="section-title">Our Mission & Vision</h2>
+          <div class="w-20 h-1 bg-primary-600 mb-6"></div>
+          
+          <h3 class="text-xl font-semibold mb-3 text-secondary-800">Mission</h3>
+          <p class="text-secondary-600 mb-6">
+            To deliver exceptional engineering solutions that help our clients increase efficiency, productivity, and profitability through innovative fabrication and conveyor systems.
+          </p>
+          
+          <h3 class="text-xl font-semibold mb-3 text-secondary-800">Vision</h3>
+          <p class="text-secondary-600 mb-6">
+            To be the preferred partner for industrial engineering solutions, recognized for our technical excellence, reliability, and customer-focused approach.
+          </p>
+          
+          <h3 class="text-xl font-semibold mb-3 text-secondary-800">Values</h3>
+          <ul class="space-y-2 mb-6 text-secondary-600">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Quality:</strong> We never compromise on the quality of our work</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Innovation:</strong> We continuously seek better solutions</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Reliability:</strong> We deliver on our promises, every time</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Safety:</strong> We prioritize safety in every project</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div data-aos="fade-left">
+          <img 
+            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+            alt="Our Mission & Vision" 
+            class="rounded-lg shadow-custom"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <Stats />
+  
+  <!-- Company History Timeline -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="section-title" data-aos="fade-up">Our Journey</h2>
+        <p class="section-subtitle mx-auto" data-aos="fade-up" data-aos-delay="100">
+          Key milestones in our company's history and growth
+        </p>
+      </div>
+      
+      <div class="relative">
+        <!-- Timeline Line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary-200 z-0"></div>
+        
+        <!-- Timeline Items -->
+        <div class="relative z-10">
+          {milestones.map((milestone, index) => (
+            <div class={`flex items-center justify-between mb-12 ${index % 2 === 0 ? '' : 'flex-row-reverse'}`} data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}>
+              <div class={`w-5/12 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                <div class={`bg-white p-6 rounded-lg shadow-custom ${index % 2 === 0 ? 'ml-auto' : 'mr-auto'} max-w-md`}>
+                  <h3 class="text-xl font-semibold mb-2 text-primary-700">{milestone.title}</h3>
+                  <p class="text-secondary-600">{milestone.description}</p>
+                </div>
+              </div>
+              
+              <div class="z-20 flex-shrink-0">
+                <div class="w-12 h-12 rounded-full bg-primary-600 text-white flex items-center justify-center font-bold shadow-lg">
+                  {milestone.year}
+                </div>
+              </div>
+              
+              <div class="w-5/12"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Our Infrastructure -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="section-title" data-aos="fade-up">Our Infrastructure</h2>
+        <p class="section-subtitle mx-auto" data-aos="fade-up" data-aos-delay="100">
+          State-of-the-art facilities and equipment for delivering excellence
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-custom overflow-hidden" data-aos="fade-up">
+          <img 
+            src="https://images.unsplash.com/photo-1605063999265-da4c704e8b92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+            alt="Manufacturing Facility" 
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3 text-secondary-900">Manufacturing Facility</h3>
+            <p class="text-secondary-600">
+              Our 50,000 sq. ft. facility houses the latest machinery and equipment for precision fabrication and assembly.
+            </p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-custom overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+          <img 
+            src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+            alt="Design Studio" 
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3 text-secondary-900">Design Studio</h3>
+            <p class="text-secondary-600">
+              Our engineering team uses cutting-edge CAD/CAM software for precise design and modeling of all projects.
+            </p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-custom overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+          <img 
+            src="https://images.unsplash.com/photo-1633415894085-6a2a4477dbe8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+            alt="Testing Lab" 
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3 text-secondary-900">Testing Lab</h3>
+            <p class="text-secondary-600">
+              Advanced testing equipment ensures all our products meet rigorous quality and performance standards.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Our Team -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="section-title" data-aos="fade-up">Our Leadership Team</h2>
+        <p class="section-subtitle mx-auto" data-aos="fade-up" data-aos-delay="100">
+          Meet the experts behind our engineering excellence
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {team.map((member, index) => (
+          <div class="bg-white rounded-lg shadow-custom overflow-hidden" data-aos="fade-up" data-aos-delay={index * 100}>
+            <img 
+              src={member.imageUrl} 
+              alt={member.name} 
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-1 text-secondary-900">{member.name}</h3>
+              <p class="text-primary-600 font-medium mb-3">{member.position}</p>
+              <p class="text-secondary-600">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <CTA />
+</Layout>

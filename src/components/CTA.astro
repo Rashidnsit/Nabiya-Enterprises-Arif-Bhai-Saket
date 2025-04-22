@@ -1,0 +1,43 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  bgColor?: 'primary' | 'secondary' | 'accent' | 'white';
+}
+
+const { 
+  title = "Ready to Work Together?", 
+  subtitle = "Contact us today to discuss your project requirements and get a customized solution.",
+  bgColor = 'primary',
+} = Astro.props;
+
+const bgClasses = {
+  primary: 'bg-primary-900 text-white',
+  secondary: 'bg-secondary-900 text-white',
+  accent: 'bg-accent-500 text-white',
+  white: 'bg-white text-secondary-900'
+};
+
+const selectedBgClass = bgClasses[bgColor];
+---
+
+<section class={`${selectedBgClass} py-16`}>
+  <div class="container-custom text-center" data-aos="fade-up">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      {title}
+    </h2>
+    <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+      {subtitle}
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="https://wa.me/1234567890?text=I'm%20interested%20in%20getting%20a%20quote" 
+         class={bgColor === 'accent' ? 'btn btn-white text-accent-500' : 'btn btn-accent'}>
+        Get a Quote
+      </a>
+      <a href="/contact" 
+         class={bgColor === 'white' ? 'btn btn-primary' : 'btn btn-secondary'}>
+        Contact Us
+      </a>
+    </div>
+  </div>
+</section>

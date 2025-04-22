@@ -1,0 +1,326 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CTA from '../components/CTA.astro';
+
+// Project categories
+const categories = ["All", "Fabrication", "Conveyor System", "Custom Solution", "Installation"];
+
+// Projects data
+const projects = [
+  {
+    title: "Automated Assembly Line",
+    category: "Conveyor System",
+    imageUrl: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Custom-designed conveyor system for an automotive parts manufacturer, increasing production efficiency by 35%.",
+    link: "/projects/automated-assembly-line"
+  },
+  {
+    title: "Steel Structure Fabrication",
+    category: "Fabrication",
+    imageUrl: "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Heavy-duty steel framework for a new manufacturing facility, completed on time and under budget.",
+    link: "/projects/steel-structure-fabrication"
+  },
+  {
+    title: "Pharmaceutical Packaging Line",
+    category: "Custom Solution",
+    imageUrl: "https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "End-to-end solution including conveyors, sorting systems, and quality control for a pharmaceutical client.",
+    link: "/projects/pharmaceutical-packaging-line"
+  },
+  {
+    title: "Food Processing Conveyor",
+    category: "Conveyor System",
+    imageUrl: "https://images.unsplash.com/photo-1542879437-c1979188db96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Stainless steel conveyor system designed for food-grade environments with strict hygiene requirements.",
+    link: "/projects/food-processing-conveyor"
+  },
+  {
+    title: "Custom Machine Frames",
+    category: "Fabrication",
+    imageUrl: "https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Precision-engineered support frames for specialized manufacturing equipment requiring vibration isolation.",
+    link: "/projects/custom-machine-frames"
+  },
+  {
+    title: "Warehouse Automation System",
+    category: "Custom Solution",
+    imageUrl: "https://images.unsplash.com/photo-1595246140625-573b715669c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Comprehensive automation solution for a distribution center, integrating conveyor systems with sorting technology.",
+    link: "/projects/warehouse-automation-system"
+  },
+  {
+    title: "Equipment Installation",
+    category: "Installation",
+    imageUrl: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Complete installation and commissioning of production equipment for a new manufacturing plant.",
+    link: "/projects/equipment-installation"
+  },
+  {
+    title: "Metal Staircase & Platforms",
+    category: "Fabrication",
+    imageUrl: "https://images.unsplash.com/photo-1582490841511-81e1363fb48c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Custom-designed access staircases and maintenance platforms for an industrial facility.",
+    link: "/projects/metal-staircase-platforms"
+  },
+  {
+    title: "Beverage Filling Line",
+    category: "Conveyor System",
+    imageUrl: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description: "Specialized conveyor system for a beverage manufacturer with precise speed control and gentle handling.",
+    link: "/projects/beverage-filling-line"
+  }
+];
+---
+
+<Layout title="Our Projects" description="Explore our portfolio of successfully completed projects across various industries including fabrication, conveyor systems, and custom solutions.">
+  <!-- Hero Section -->
+  <Hero 
+    title="Our Project Portfolio" 
+    subtitle="Discover our successful projects and innovative solutions for various industries"
+    ctaText="Contact Us"
+    ctaLink="/contact"
+    backgroundImage="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+  />
+  
+  <!-- Projects Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+        {categories.map(category => (
+          <button 
+            class="category-filter px-4 py-2 rounded-md border border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white transition-colors"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+      
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+        {projects.map(project => (
+          <div class="project-item" data-category={project.category}>
+            <ProjectCard 
+              title={project.title}
+              category={project.category}
+              imageUrl={project.imageUrl}
+              description={project.description}
+              link={project.link}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Project Approach -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="section-title" data-aos="fade-up">Our Project Approach</h2>
+        <p class="section-subtitle mx-auto" data-aos="fade-up" data-aos-delay="100">
+          How we deliver successful projects that meet client expectations
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-custom p-6 border-t-4 border-primary-600" data-aos="fade-up">
+          <div class="w-16 h-16 rounded-full bg-primary-50 flex items-center justify-center mx-auto mb-4 text-primary-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+            </svg>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-3 text-secondary-900 text-center">
+            Discovery & Planning
+          </h3>
+          
+          <p class="text-secondary-600 mb-4 text-center">
+            We start by understanding your specific needs, challenges, and objectives to develop a comprehensive project plan.
+          </p>
+          
+          <ul class="space-y-2 text-secondary-600">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Detailed requirements gathering</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Site assessment and evaluation</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Scope definition and scheduling</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-custom p-6 border-t-4 border-primary-600" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 rounded-full bg-primary-50 flex items-center justify-center mx-auto mb-4 text-primary-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-3 text-secondary-900 text-center">
+            Execution & Quality Control
+          </h3>
+          
+          <p class="text-secondary-600 mb-4 text-center">
+            Our experienced team brings your project to life with precision engineering, quality materials, and meticulous attention to detail.
+          </p>
+          
+          <ul class="space-y-2 text-secondary-600">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Professional project management</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Regular progress updates</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Rigorous quality inspections</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-custom p-6 border-t-4 border-primary-600" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 rounded-full bg-primary-50 flex items-center justify-center mx-auto mb-4 text-primary-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-3 text-secondary-900 text-center">
+            Completion & Support
+          </h3>
+          
+          <p class="text-secondary-600 mb-4 text-center">
+            We ensure a smooth handover with thorough testing, comprehensive training, and ongoing support for your new systems.
+          </p>
+          
+          <ul class="space-y-2 text-secondary-600">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Final testing and commissioning</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Operator training and documentation</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Ongoing maintenance support</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Client Testimonial -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="bg-primary-900 text-white rounded-lg p-8 md:p-12" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-12 h-12 mx-auto mb-6 text-primary-300" viewBox="0 0 16 16">
+            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z" />
+          </svg>
+          
+          <p class="text-xl md:text-2xl italic mb-8">
+            "Working with Nabiya Enterprises was a game-changer for our production facility. Their team designed and implemented a custom conveyor system that perfectly addressed our unique challenges. Their attention to detail, commitment to quality, and responsive service made the entire process smooth and stress-free. The system has been running flawlessly for over two years now, significantly improving our efficiency and output."
+          </p>
+          
+          <div class="flex items-center justify-center">
+            <img 
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=120&q=80" 
+              alt="Client" 
+              class="w-16 h-16 rounded-full border-2 border-white object-cover mr-4"
+            />
+            <div class="text-left">
+              <p class="font-semibold text-lg">Michael Thompson</p>
+              <p class="text-primary-300">Operations Director, Global Manufacturing Inc.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <CTA 
+    title="Let's Discuss Your Project" 
+    subtitle="Contact us today to explore how our expertise can help bring your project to life."
+  />
+</Layout>
+
+<script>
+  // Project filtering functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.category-filter');
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    // Set "All" as active by default
+    document.querySelector('[data-category="All"]').classList.add('bg-primary-600', 'text-white');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-primary-600', 'text-white');
+        });
+        
+        // Add active class to clicked button
+        button.classList.add('bg-primary-600', 'text-white');
+        
+        const category = button.getAttribute('data-category');
+        
+        // Show all projects if "All" is selected, otherwise filter
+        if (category === 'All') {
+          projectItems.forEach(item => {
+            item.style.display = 'block';
+            // Add animation class
+            item.classList.add('fade-in');
+          });
+        } else {
+          projectItems.forEach(item => {
+            if (item.getAttribute('data-category') === category) {
+              item.style.display = 'block';
+              // Add animation class
+              item.classList.add('fade-in');
+            } else {
+              item.style.display = 'none';
+              // Remove animation class
+              item.classList.remove('fade-in');
+            }
+          });
+        }
+      });
+    });
+  });
+</script>

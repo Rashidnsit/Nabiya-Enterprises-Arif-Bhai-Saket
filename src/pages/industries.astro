@@ -1,0 +1,604 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import IndustryCard from "../components/IndustryCard.astro";
+import CTA from "../components/CTA.astro";
+
+// Industries data
+const industries = [
+  {
+    title: "Automotive",
+    imageUrl:
+      "https://images.unsplash.com/photo-1682531046921-4a37f93b85de?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Custom solutions for automotive assembly lines, parts handling, and specialized equipment frames.",
+    benefits: [
+      "Increased production efficiency",
+      "Improved quality control",
+      "Optimized material handling",
+    ],
+  },
+  {
+    title: "Pharmaceutical",
+    imageUrl:
+      "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Specialized systems for pharmaceutical manufacturing including clean room compatible conveyors and equipment.",
+    benefits: [
+      "GMP compliant designs",
+      "Clean room compatible materials",
+      "Precision handling of delicate products",
+    ],
+  },
+  {
+    title: "Food & Beverage",
+    imageUrl:
+      "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Food-grade conveyor systems and equipment frames designed for sanitary environments and easy cleaning.",
+    benefits: [
+      "Sanitary design principles",
+      "Easy cleaning and maintenance",
+      "FDA compliant materials",
+    ],
+  },
+  {
+    title: "Aerospace",
+    imageUrl:
+      "https://images.unsplash.com/photo-1560850038-f95de6e715b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "High-precision fabrication services for aerospace components and specialized testing equipment.",
+    benefits: [
+      "High precision manufacturing",
+      "Quality documentation",
+      "AS9100 compliant processes",
+    ],
+  },
+  {
+    title: "Electronics",
+    imageUrl:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "ESD-safe conveyor systems and workstations for electronics manufacturing and assembly.",
+    benefits: [
+      "ESD-safe designs",
+      "Precision product handling",
+      "Clean environment compatibility",
+    ],
+  },
+  {
+    title: "Warehouse & Logistics",
+    imageUrl:
+      "https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Efficient material handling systems for distribution centers, warehouses, and logistics operations.",
+    benefits: [
+      "Increased throughput capacity",
+      "Reduced manual handling",
+      "Improved inventory management",
+    ],
+  },
+  {
+    title: "Heavy Manufacturing",
+    imageUrl:
+      "https://images.unsplash.com/photo-1701328778019-e95dedbf5346?q=80&w=1633&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Robust fabrication services and heavy-duty conveyor systems for demanding industrial environments.",
+    benefits: [
+      "Durable, long-lasting designs",
+      "High capacity material handling",
+      "Harsh environment compatibility",
+    ],
+  },
+  {
+    title: "Packaging",
+    imageUrl:
+      "https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    description:
+      "Custom conveyor systems and packaging line solutions for efficient product handling and processing.",
+    benefits: [
+      "Increased packaging speeds",
+      "Reduced product damage",
+      "Integration with packaging equipment",
+    ],
+  },
+];
+
+// Case studies data
+const caseStudies = [
+  {
+    title: "Automotive Parts Manufacturer",
+    challenge:
+      "An automotive parts manufacturer needed to increase production capacity while reducing labor costs and improving quality control.",
+    solution:
+      "We designed and implemented a custom assembly line with specialized conveyor systems and automated inspection stations.",
+    result:
+      "The client achieved a 35% increase in production capacity, 20% reduction in labor costs, and significant improvement in product quality.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Pharmaceutical Production Facility",
+    challenge:
+      "A pharmaceutical company needed a clean room compatible conveyor system for their new production facility.",
+    solution:
+      "We developed a custom stainless steel conveyor system with specialized coatings and sanitizable components that met all GMP requirements.",
+    result:
+      "The client successfully passed all regulatory inspections and achieved a 40% improvement in production throughput.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+  },
+];
+---
+
+<Layout
+  title="Industries Served"
+  description="Discover how our fabrication services and conveyor systems benefit various industries including automotive, pharmaceutical, food & beverage, aerospace, and more."
+>
+  <!-- Hero Section -->
+  <Hero
+    title="Industries We Serve"
+    subtitle="Tailored engineering solutions for a wide range of industrial sectors"
+    ctaText="Get a Quote"
+    backgroundImage="https://images.unsplash.com/photo-1533342960427-3de0a7fca5be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+  />
+
+  <!-- Industries Overview -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="section-title" data-aos="fade-up">
+          Serving Diverse Industries
+        </h2>
+        <p
+          class="section-subtitle mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Our expertise spans across multiple sectors, providing tailored
+          solutions for specific industry requirements
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          industries.map((industry, index) => (
+            <IndustryCard
+              title={industry.title}
+              imageUrl={industry.imageUrl}
+              description={industry.description}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Solutions -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="section-title" data-aos="fade-up">Our Industry Solutions</h2>
+        <p
+          class="section-subtitle mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          How our services address the specific needs of different industries
+        </p>
+      </div>
+
+      {
+        industries.slice(0, 4).map((industry, index) => (
+          <div
+            class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16 ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
+          >
+            <div
+              class={`${index % 2 !== 0 ? "order-1 lg:order-2" : "order-1"}`}
+              data-aos="fade-right"
+            >
+              <img
+                src={industry.imageUrl}
+                alt={industry.title}
+                class="rounded-lg shadow-custom"
+              />
+            </div>
+
+            <div
+              class={`${index % 2 !== 0 ? "order-2 lg:order-1" : "order-2"}`}
+              data-aos="fade-left"
+            >
+              <h3 class="text-2xl font-semibold mb-4 text-primary-800">
+                {industry.title} Solutions
+              </h3>
+              <p class="text-secondary-600 mb-6">{industry.description}</p>
+
+              <h4 class="text-lg font-semibold mb-3 text-secondary-800">
+                Key Benefits:
+              </h4>
+              <ul class="space-y-3 mb-6">
+                {industry.benefits.map((benefit) => (
+                  <li class="flex items-start">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a href="/contact" class="btn btn-primary">
+                Discuss Your Requirements
+              </a>
+            </div>
+          </div>
+        ))
+      }
+
+      <div class="text-center mt-8">
+        <p class="text-lg text-secondary-600 mb-6" data-aos="fade-up">
+          We also serve many other industries with our custom engineering
+          solutions. Contact us to discuss your specific requirements.
+        </p>
+        <a href="/contact" class="btn btn-primary" data-aos="fade-up"
+          >Contact Us</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="section-title" data-aos="fade-up">Industry Case Studies</h2>
+        <p
+          class="section-subtitle mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Real-world examples of how our solutions have addressed
+          industry-specific challenges
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {
+          caseStudies.map((study) => (
+            <div
+              class="bg-white rounded-lg shadow-custom overflow-hidden"
+              data-aos="fade-up"
+            >
+              <div class="relative h-64">
+                <img
+                  src={study.imageUrl}
+                  alt={study.title}
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-secondary-950/80 to-transparent opacity-60" />
+                <div class="absolute bottom-0 left-0 p-6">
+                  <h3 class="text-2xl font-semibold text-white">
+                    {study.title}
+                  </h3>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <div class="mb-4">
+                  <h4 class="text-lg font-semibold mb-2 text-secondary-900">
+                    Challenge:
+                  </h4>
+                  <p class="text-secondary-600">{study.challenge}</p>
+                </div>
+
+                <div class="mb-4">
+                  <h4 class="text-lg font-semibold mb-2 text-secondary-900">
+                    Solution:
+                  </h4>
+                  <p class="text-secondary-600">{study.solution}</p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold mb-2 text-secondary-900">
+                    Results:
+                  </h4>
+                  <p class="text-secondary-600">{study.result}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Expertise -->
+  <section class="section-padding bg-primary-900 text-white">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">
+          Our Industry Expertise
+        </h2>
+        <p
+          class="text-lg text-primary-100 mb-12 max-w-3xl mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          What sets us apart in providing solutions for various industries
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          class="p-6 border border-primary-700 rounded-lg"
+          data-aos="fade-up"
+        >
+          <div
+            class="w-16 h-16 rounded-full bg-primary-800 flex items-center justify-center mb-6 text-primary-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"
+              ></path>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-3">Technical Expertise</h3>
+
+          <p class="text-primary-100 mb-4">
+            Our team includes industry specialists with deep knowledge of
+            specific sector requirements, regulations, and best practices.
+          </p>
+
+          <ul class="space-y-2 text-primary-200">
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Specialized industry knowledge</span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Compliance with sector standards</span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Industry-specific design principles</span>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="p-6 border border-primary-700 rounded-lg"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div
+            class="w-16 h-16 rounded-full bg-primary-800 flex items-center justify-center mb-6 text-primary-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-3">Customized Solutions</h3>
+
+          <p class="text-primary-100 mb-4">
+            We develop tailored solutions that address the unique challenges and
+            requirements of each industry we serve.
+          </p>
+
+          <ul class="space-y-2 text-primary-200">
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Industry-specific design considerations</span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Purpose-built solutions</span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Adaptive approach to unique challenges</span>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="p-6 border border-primary-700 rounded-lg"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div
+            class="w-16 h-16 rounded-full bg-primary-800 flex items-center justify-center mb-6 text-primary-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"
+              ></path>
+            </svg>
+          </div>
+
+          <h3 class="text-xl font-semibold mb-3">Proven Track Record</h3>
+
+          <p class="text-primary-100 mb-4">
+            Our extensive portfolio of successful projects across multiple
+            industries demonstrates our ability to deliver results.
+          </p>
+
+          <ul class="space-y-2 text-primary-200">
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Successful industry-specific projects</span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Long-term client relationships</span>
+            </li>
+            <li class="flex items-start">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-primary-300 mr-2 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Measurable results and improvements</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA
+    title="Need a Solution for Your Industry?"
+    subtitle="Contact us today to discuss how our expertise can address your specific industry challenges."
+    bgColor="secondary"
+  />
+</Layout>
